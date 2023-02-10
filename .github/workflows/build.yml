@@ -57,12 +57,9 @@ jobs:
       with:
         name: artifacts
     - name: Deploy to Sandbox
-      env:
-        USERNAME: PipelinePractice
-        PASSWORD: 15121991Dk
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -Danypoint.username="$USERNAME" \
-         -Danypoint.password="$PASSWORD"
+         -Dmaven.anypoint-exchange-v2.username="~~~Client~~~"
+         -Dmaven.anypoint-exchange-v2.password="c806604c3ae3475fa907964494110341~?~A571F53164964fC5896DcFdb385E709c"
