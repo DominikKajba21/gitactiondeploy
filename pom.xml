@@ -28,6 +28,7 @@
     <cloudHubDeployment>
       <uri>https://anypoint.mulesoft.com</uri>;
       <muleVersion>4.4.0</muleVersion>
+      <connectedAppGrantType>client_credentials</connectedAppGrantType>
       <username>PipelinePractice</username>
       <password>15121991Dk</password>
       <applicationName>githubactiondeploy</applicationName>
