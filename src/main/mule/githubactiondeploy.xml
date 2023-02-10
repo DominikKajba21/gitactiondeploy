@@ -10,5 +10,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<flow name="githubactiondeployFlow" doc:id="6460ced8-924f-4ea6-b1b7-927a59648a34" >
 		<http:listener doc:name="Listener" doc:id="9a18a30a-e8a8-462b-bbdf-d81a84862824" config-ref="HTTP_Listener_config" path="/pojoijfew"/>
 		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="fa11c9d1-b58a-4638-bba3-9597c2fba1ea" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="ea107b1a-0ead-46a3-96ef-67ee0592cef8" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="faf15a02-89d3-475b-aab5-0af5c3cc510e" />
 	</flow>
 </mule>
