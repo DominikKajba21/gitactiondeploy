@@ -11,5 +11,8 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<http:listener doc:name="Listener" doc:id="9a18a30a-e8a8-462b-bbdf-d81a84862824" config-ref="HTTP_Listener_config" path="/pojoijfew"/>
 		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="fa11c9d1-b58a-4638-bba3-9597c2fba1ea" />
 		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="faf15a02-89d3-475b-aab5-0af5c3cc510e" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="52d6cac3-049a-4b4d-89d0-8ee305c75ac2" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="fbd06f98-ff1f-4e8f-84a1-65a1e10e44a2" />
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="afee3953-66c5-4974-9aa8-df44aa0bdade" />
 	</flow>
 </mule>
