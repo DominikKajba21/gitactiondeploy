@@ -58,11 +58,7 @@ jobs:
       with:
         name: artifacts
     - name: Deploy to Sandbox
-      env:
-        USERNAME: ${{ secrets.ANYPOINT_PLATFORM_USERNAME}}
-        PASSWORD: ${{ secrets.ANYPOINT_PLATFORM_PASSWORD}}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy \
          -Dmule.artifact=$artifactName \
-         -Dmaven.anypoint-exchange-v2.username="~~~Client~~~" -Dmaven.anypoint-exchange-v2.password="dcb3f5804a76455d845e734ccb289187~?~66FA43c70e814a70976Ee845D8EaC48B"
