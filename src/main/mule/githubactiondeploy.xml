@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:ftp="http://www.mulesoft.org/schema/mule/ftp"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ftp http://www.mulesoft.org/schema/mule/ftp/current/mule-ftp.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1f092c7e-c5fc-476f-9dc2-072aaa50f398" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+		<http:listener-connection host="0.0.0.0" port="8086" />
 	</http:listener-config>
+	<ftp:config name="FTP_Config" doc:name="FTP Config" doc:id="88c39a28-278e-470d-a31a-c3bbb29a2669" >
+		<ftp:connection host="127.0.0.1" username="ivan" password="12345678" passive="false"/>
+	</ftp:config>
 	<flow name="githubactiondeployFlow" doc:id="6460ced8-924f-4ea6-b1b7-927a59648a34" >
-		<http:listener doc:name="Listener" doc:id="9a18a30a-e8a8-462b-bbdf-d81a84862824" config-ref="HTTP_Listener_config" path="/pojoijfew"/>
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="fa11c9d1-b58a-4638-bba3-9597c2fba1ea" />
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="faf15a02-89d3-475b-aab5-0af5c3cc510e" />
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="52d6cac3-049a-4b4d-89d0-8ee305c75ac2" />
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="fbd06f98-ff1f-4e8f-84a1-65a1e10e44a2" />
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="afee3953-66c5-4974-9aa8-df44aa0bdade" />
+		<http:listener doc:name="Listener" doc:id="9a18a30a-e8a8-462b-bbdf-d81a84862824" config-ref="HTTP_Listener_config" path="/list"/>
+		<ftp:list doc:name="List" doc:id="a54e7a8a-ba76-44d0-a3e3-51ce3aa0b7ca" config-ref="FTP_Config" directoryPath="/accounts"/>
+		<ee:transform doc:name="Transform Message" doc:id="fbae37df-7b91-4777-818e-2aa7e4cc836b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload map {
+  fileName: $.attributes.name
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="24c04477-b662-4f81-9d38-162cc72873a3" />
 	</flow>
 </mule>

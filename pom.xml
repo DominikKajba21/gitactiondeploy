@@ -19,30 +19,32 @@
 
 	<build>
 		<plugins>
-<plugin>
-  <groupId>org.mule.tools.maven</groupId>
-  <artifactId>mule-maven-plugin</artifactId>
-  <version>3.4.2</version>
-  <extensions>true</extensions>
-  <configuration>
-    <cloudHubDeployment>
-      <uri>https://anypoint.mulesoft.com</uri>;
-      <muleVersion>4.4.0</muleVersion>
-      <connectedAppGrantType>client_credentials</connectedAppGrantType>
-      <username>PipelinePractice</username>
-      <password>15121991Dk</password>
-      <applicationName>githubactiondeploy</applicationName>
-      <environment>Sandbox</environment>
-      <region>us-east-2</region>
-      <workers>1</workers>
-      <workerType>MICRO</workerType>
-      <objectStoreV2>true</objectStoreV2>
-      <properties>
-        <key>value</key>
-      </properties>
-    </cloudHubDeployment>
-  </configuration>
-</plugin>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>3.4.2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						;
+
+						<muleVersion>4.4.0</muleVersion>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<connectedAppClientId>dcb3f5804a76455d845e734ccb289187</connectedAppClientId>                        
+						<connectedAppClientSecret>66FA43c70e814a70976Ee845D8EaC48B</connectedAppClientSecret>
+						<applicationName>githubactiondeploy</applicationName>
+						<environment>Sandbox</environment>
+						<region>us-east-2</region>
+						<workers>1</workers>
+						<workerType>MICRO</workerType>
+						<objectStoreV2>true</objectStoreV2>
+						<properties>
+							<key>value</key>
+						</properties>
+					</cloudHubDeployment>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -57,6 +59,12 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.2</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-ftp-connector</artifactId>
+			<version>1.8.0</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
