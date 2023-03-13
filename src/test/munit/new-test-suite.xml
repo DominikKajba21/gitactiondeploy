@@ -13,7 +13,7 @@
 			<flow-ref doc:name="Flow Reference" doc:id="ea98bc8b-dfa3-4557-b098-0b5f0dfac8f6" name="githubactiondeployFlow1"/>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-equals doc:name="Assert equals" doc:id="e31863c6-b19b-4b3a-8710-16d3c3edcb7f" actual="#[payload]" expected='#["hello"]' message='#["payload not correct!"]'/>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="e31863c6-b19b-4b3a-8710-16d3c3edcb7f" actual="#[payload]" expected='#["hello54"]' message='#["payload not correct!"]'/>
 		</munit:validation>
 	</munit:test>
 
