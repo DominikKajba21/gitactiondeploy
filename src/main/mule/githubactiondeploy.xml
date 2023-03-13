@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:ftp="http://www.mulesoft.org/schema/mule/ftp"
-	xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:ftp="http://www.mulesoft.org/schema/mule/ftp" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ftp http://www.mulesoft.org/schema/mule/ftp/current/mule-ftp.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1f092c7e-c5fc-476f-9dc2-072aaa50f398" >
-		<http:listener-connection host="0.0.0.0" port="8086" />
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd">
+	<api-gateway:autodiscovery apiId="18527136" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="f0674340-57c0-48c6-9f34-8ee8de9d89f6" flowRef="githubactiondeployFlow1" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4d5d22e4-7ea8-4d8d-8e2b-46cf83c8e91e" basePath="/test" >
+		<http:listener-connection host="0.0.0.0" port="8091" />
 	</http:listener-config>
-	<ftp:config name="FTP_Config" doc:name="FTP Config" doc:id="88c39a28-278e-470d-a31a-c3bbb29a2669" >
-		<ftp:connection host="127.0.0.1" username="ivan" password="12345678" passive="false"/>
-	</ftp:config>
-	<flow name="githubactiondeployFlow" doc:id="6460ced8-924f-4ea6-b1b7-927a59648a34" >
-		<http:listener doc:name="Listener" doc:id="9a18a30a-e8a8-462b-bbdf-d81a84862824" config-ref="HTTP_Listener_config" path="/list"/>
-		<ftp:list doc:name="List" doc:id="a54e7a8a-ba76-44d0-a3e3-51ce3aa0b7ca" config-ref="FTP_Config" directoryPath="/accounts"/>
-		<ee:transform doc:name="Transform Message" doc:id="fbae37df-7b91-4777-818e-2aa7e4cc836b" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload map {
-  fileName: $.attributes.name
-}]]></ee:set-payload>
-			</ee:message>
-		</ee:transform>
-		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="24c04477-b662-4f81-9d38-162cc72873a3" />
+	<flow name="githubactiondeployFlow1" doc:id="c9ec57bd-4a9b-48fb-99f6-b87677d7c32c" >
+		<http:listener doc:name="Listener" doc:id="0597ffcb-67bc-4ff6-8efc-116ea4e9c27a" config-ref="HTTP_Listener_config" path="/list"/>
+		<set-payload value='#["hello"]' doc:name="Set Payload" doc:id="3cc5b273-f636-4f78-86df-11f85aeb2457" />
 	</flow>
 </mule>
