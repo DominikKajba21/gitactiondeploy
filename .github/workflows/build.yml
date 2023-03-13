@@ -44,7 +44,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:    
+    steps: 
+    - name: Test
+      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
     - name: Checkout this repo
       uses: actions/checkout@v3
     - name: Cache dependencies
@@ -57,10 +59,7 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: artifacts
-    - name: Deploy to Sandbox
-      run: |
-        artifactName=$(ls *.jar | head -1)
-        mvn deploy -DmuleDeploy \
-         -Dmule.artifact=$artifactName \
+    - name: Test
+      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
   
  
