@@ -40,11 +40,10 @@ jobs:
           name: artifacts
           path: target/*.jar
         
-  
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps: 
+    steps:    
     - name: Checkout this repo
       uses: actions/checkout@v3
     - name: Cache dependencies
