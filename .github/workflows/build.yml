@@ -46,7 +46,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:    
+    steps: 
+    - name: Test
+      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
     - name: Checkout this repo
       uses: actions/checkout@v3
     - name: Cache dependencies
@@ -60,7 +62,6 @@ jobs:
       with:
         name: artifacts
     - name: Test
-      run: |
-       mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
+      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
   
  
