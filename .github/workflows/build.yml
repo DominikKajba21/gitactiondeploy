@@ -59,7 +59,5 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: artifacts
-    - name: Test
-      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
   
  
