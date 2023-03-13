@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="new-test-suite.xml" />
+	<munit:test name="new-test-suiteTest" doc:id="ee6adb3f-9c14-4c4f-93e2-ffec34572372" >
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="ffc588e7-8e89-4569-a97b-b9700aa68646" name="githubactiondeployFlow1"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="7945f954-1425-4dbd-b3e3-879c16a09478" actual="#[payload]" expected='#["hello"]' message='#["payload not correct!"]'/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
