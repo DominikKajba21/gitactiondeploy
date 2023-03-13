@@ -28,6 +28,8 @@ jobs:
         java-version: 8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Test
+      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
     - name: Stamp artifact file name with commit hash
       run: |
         artifactName1=$(ls target/*.jar | head -1)
