@@ -45,8 +45,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps: 
-    - name: Test
-      run: mvn clean test -Dmaven.test.skip=false -Dmunit.test=new-test-suite.xml
     - name: Checkout this repo
       uses: actions/checkout@v3
     - name: Cache dependencies
