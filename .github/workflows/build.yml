@@ -27,7 +27,7 @@ jobs:
         distribution: 'zulu'
         java-version: 11
     - name: Build with Maven
-      run: mvn clean install
+      run: mvn install -DskipTests
     - name: Stamp artifact file name with commit hash
       run: |
         artifactName1=$(ls target/*.jar | head -1)
